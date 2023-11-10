@@ -98,7 +98,39 @@ public class PostController {
         }
     }
 
+    /**
+     * 공구 마감
+     */
 
+    @PostMapping("/end")
+    public ResponseEntity<Object> endPost(@RequestParam Long postId) throws IOException {
+
+        Map<String, Object> response = new HashMap<>();
+        postService.end(postId);
+
+        response.put("result", true);
+        response.put("message", "end Success");
+        return ResponseEntity.ok(response);
+
+    }
+
+    /**
+     * 참여한 공동구매 완료된 포스트
+     */
+
+    @PostMapping("/mydeadlist")
+    public ResponseEntity<Object> deadPost(@RequestParam Long memberKeyId) throws IOException {
+
+        Map<String, Object> response = new HashMap<>();
+
+        List<Post> postList = postService.getDeadPost(memberKeyId);
+
+        response.put("content", postList);
+        response.put("result", true);
+        response.put("message", "DaedPostList Success");
+        return ResponseEntity.ok(response);
+
+    }
 
     // 응답 메서드
     private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {
