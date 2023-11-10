@@ -1,5 +1,6 @@
 package com.channeltalk.teamten.member.service;
 
+import com.channeltalk.teamten.member.dto.MemberChargeDto;
 import com.channeltalk.teamten.member.dto.MemberLoginDto;
 import com.channeltalk.teamten.member.dto.MemberSignUpDto;
 import com.channeltalk.teamten.member.entity.Member;
@@ -15,4 +16,6 @@ public interface MemberService {
     //로그인
     boolean login(MemberLoginDto memberLoginDto) throws IOException;
 
+    // 포인트 충전
+    String charge(MemberChargeDto memberChargeDto) throws IOException;
 }

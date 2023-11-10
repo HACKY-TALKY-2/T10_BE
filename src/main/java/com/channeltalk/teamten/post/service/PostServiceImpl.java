@@ -57,19 +57,21 @@ public class PostServiceImpl implements PostService {
     // 공구참여
     @Override
     public Long join(PostJoinDto postJoinDto) throws IOException {
-        Optional<Post> updatePost = postRepository.findById(postJoinDto.getPostId());
-        Post post = updatePost.get();
+        Optional<Post> beforePost = postRepository.findById(postJoinDto.getPostId());
+        Post post = beforePost.get();
         Long participantPeopleCount = post.getParticipantPeople(); // 현재 참여자
 
         Long changeCount = participantPeopleCount + postJoinDto.getBuyCount();
         post.setParticipantPeople(changeCount); // 참여자 업데이트
 
+        // Member찾기
         Optional<Member> memberOptionalr = memberRepository.findById(postJoinDto.getMemberKeyId());
         Member member = memberOptionalr.get();
 
-        // 참여자 리스트 추가
+        // 참여자 리스트 생성
         Participation participation = Participation.createParticipation(postJoinDto.getPostId(), postJoinDto.getBuyCount(), member );
 
+        //member에 participation 추가
         member.getParticipationList().add(participation);
 
         memberRepository.save(member);
