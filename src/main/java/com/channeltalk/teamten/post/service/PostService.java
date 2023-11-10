@@ -12,7 +12,7 @@ public interface PostService {
 
     void update(String content, Long postId) throws IOException;
 
-    Long join(PostJoinDto postJoinDto) throws IOException;
+    String join(PostJoinDto postJoinDto) throws IOException;
 
     // 모든 신고 내역 조회
     List<Post> getAllPost();

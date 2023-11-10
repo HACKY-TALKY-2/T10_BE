@@ -20,6 +20,7 @@ public class PostAddDto {
 //    private Long participantPeople;
     private Long totalItemCount;
     private String location;
+    private String shopLink;
 
     private MultipartFile multipartFile; // 업로드 이미지
 }

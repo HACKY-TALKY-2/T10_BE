@@ -52,6 +52,9 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false, length = 45)
     private String location;
 
+    @Column(name = "shopLink", nullable = false)
+    private String shopLink;
+
 
     public static Post createPost(PostAddDto postAddDto, String imageUrl) {
 
@@ -67,6 +70,7 @@ public class Post extends BaseTimeEntity {
                 .totalItemCount(postAddDto.getTotalItemCount())
                 .location(postAddDto.getLocation())
                 .image(imageUrl)
+                .shopLink(postAddDto.getShopLink())
                 .build();
     }
 }

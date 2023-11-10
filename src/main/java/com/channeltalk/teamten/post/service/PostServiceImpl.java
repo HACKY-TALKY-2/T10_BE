@@ -57,7 +57,7 @@ public class PostServiceImpl implements PostService {
 
     // 공구참여
     @Override
-    public Long join(PostJoinDto postJoinDto) throws IOException {
+    public String join(PostJoinDto postJoinDto) throws IOException {
         Optional<Post> beforePost = postRepository.findById(postJoinDto.getPostId());
         Post post = beforePost.get();
         Long participantPeopleCount = post.getParticipantPeople(); // 현재 참여자
@@ -78,16 +78,12 @@ public class PostServiceImpl implements PostService {
         memberRepository.save(member);
         postRepository.save(post);
 
-
-        return changeCount;
+        return post.getKakao();
     }
 
     @Override
     public List<Post> getAllPost() {
         List<Post> reports = postRepository.findAll();
-//        List<ReportListDto> reportList = reports.stream()
-//                .map(this::convertToReportListAll)
-//                .toList();
 
         return reports;
     }

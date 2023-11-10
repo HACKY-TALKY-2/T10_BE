@@ -84,12 +84,12 @@ public class PostController {
     public ResponseEntity<Object> joinPost(@RequestBody PostJoinDto request) throws IOException {
 
         Map<String, Object> response = new HashMap<>();
-        Long changedCount = postService.join(request);
+        String kakoLink = postService.join(request);
 
-        if(changedCount != null) {
+        if(kakoLink != null) {
             response.put("result", true);
             response.put("message", "Join Success");
-            response.put("바뀐 count", changedCount);
+            response.put("kakoLink", kakoLink);
             return ResponseEntity.ok(response);
         } else {
             response.put("result", false);
