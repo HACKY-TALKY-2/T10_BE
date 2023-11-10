@@ -30,13 +30,13 @@ public class MemberServiceImpl implements MemberService{
      * 로그인
      */
     @Override
-    public boolean login(MemberLoginDto memberLoginDto) throws IOException {
+    public Long login(MemberLoginDto memberLoginDto) throws IOException {
 
         Optional<Member> member = memberRepository.findByUserIdAndPassword(memberLoginDto.getUserId(), memberLoginDto.getPassword());
 
         if (member.isPresent())
-            return true;
-        return false;
+            return member.get().getMemberKeyId();
+        return -1L;
     }
 
     /**

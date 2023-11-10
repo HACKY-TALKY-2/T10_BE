@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -79,6 +80,16 @@ public class PostServiceImpl implements PostService {
 
 
         return changeCount;
+    }
+
+    @Override
+    public List<Post> getAllPost() {
+        List<Post> reports = postRepository.findAll();
+//        List<ReportListDto> reportList = reports.stream()
+//                .map(this::convertToReportListAll)
+//                .toList();
+
+        return reports;
     }
 
 

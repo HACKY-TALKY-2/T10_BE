@@ -3,6 +3,7 @@ package com.channeltalk.teamten.post.controller;
 import com.channeltalk.teamten.post.dto.PostAddDto;
 import com.channeltalk.teamten.post.dto.PostJoinDto;
 import com.channeltalk.teamten.post.dto.PostUpdateDto;
+import com.channeltalk.teamten.post.entity.Post;
 import com.channeltalk.teamten.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -55,6 +57,27 @@ public class PostController {
     }
 
     /**
+     * 모든 게시글 리스트
+     */
+    @GetMapping("/all")
+    public ResponseEntity<Object> allPost( ) throws IOException {
+
+        Map<String, Object> response = new HashMap<>();
+        List<Post> posts = postService.getAllPost();
+
+        if(posts != null) {
+            response.put("result", true);
+            response.put("message", "조회 Success");
+            response.put("contents", posts);
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("result", false);
+            response.put("message", "조회 Fail");
+            return ResponseEntity.badRequest().body(response); // 400 Bad Request
+        }
+    }
+
+    /**
      * 공구 참여
      */
     @PostMapping("/join")
@@ -74,6 +97,8 @@ public class PostController {
             return ResponseEntity.badRequest().body(response); // 400 Bad Request
         }
     }
+
+
 
     // 응답 메서드
     private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {

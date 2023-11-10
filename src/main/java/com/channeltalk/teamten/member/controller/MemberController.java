@@ -25,7 +25,7 @@ public class MemberController {
      */
     @PostMapping("/signup")
     public void signUp(@RequestBody MemberSignUpDto memberSignUpDto) throws IOException {
-        memberService.signUp(memberSignUpDto);
+       memberService.signUp(memberSignUpDto);
     }
 
     /**
@@ -33,13 +33,14 @@ public class MemberController {
      */
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody MemberLoginDto memberLoginDto) throws IOException {
-        boolean result = memberService.login(memberLoginDto );
+        Long result = memberService.login(memberLoginDto );
 
         Map<String, Object> response = new HashMap<>();
 
-        if(result ) {
+        if(result != -1L) {
             response.put("result", true);
             response.put("message", "Login Success");
+            response.put("memberKeyId", result);
             return ResponseEntity.ok(response);
         } else {
             response.put("result", false);

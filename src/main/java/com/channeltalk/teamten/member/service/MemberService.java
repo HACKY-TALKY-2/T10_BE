@@ -14,7 +14,7 @@ public interface MemberService {
     void signUp(MemberSignUpDto memberSignUpDto) throws IOException;
 
     //로그인
-    boolean login(MemberLoginDto memberLoginDto) throws IOException;
+    Long login(MemberLoginDto memberLoginDto) throws IOException;
 
     // 포인트 충전
     String charge(MemberChargeDto memberChargeDto) throws IOException;
