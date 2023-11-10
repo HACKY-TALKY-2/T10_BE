@@ -101,5 +101,13 @@ public class PostServiceImpl implements PostService {
 
     }
 
+    @Override
+    public List<Post> getDeadPost(Long memberKeyId) {
+
+        List<Post> reports = postRepository.findByMemberKeyIdAndDeadline(memberKeyId, 1L); // 마감된 공구리스트만
+
+        return reports;
+    }
+
 
 }

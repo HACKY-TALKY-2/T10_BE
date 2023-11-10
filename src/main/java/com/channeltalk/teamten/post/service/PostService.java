@@ -20,4 +20,7 @@ public interface PostService {
     // 공구 마감
     void end(Long postId) throws IOException;
 
+    // 참여한 공구중 마감된 공구
+    List<Post> getDeadPost(Long memberKeyId);
+
 }
