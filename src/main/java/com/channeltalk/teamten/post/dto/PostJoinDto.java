@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 public class PostJoinDto {
     Long postId;
+    Long memberKeyId;
     Long buyCount;
 }

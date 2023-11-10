@@ -1,6 +1,6 @@
 package com.channeltalk.teamten.post.controller;
 
-import com.channeltalk.teamten.post.dto.PostDto;
+import com.channeltalk.teamten.post.dto.PostAddDto;
 import com.channeltalk.teamten.post.dto.PostJoinDto;
 import com.channeltalk.teamten.post.dto.PostUpdateDto;
 import com.channeltalk.teamten.post.service.PostService;
@@ -24,11 +24,11 @@ public class PostController {
      * 게시글 추가
      */
     @PostMapping("/add")
-    public ResponseEntity<Object> addReport(@ModelAttribute PostDto postDto) throws IOException {
+    public ResponseEntity<Object> addReport(@ModelAttribute PostAddDto postAddDto) throws IOException {
 
         Map<String, Object> response = new HashMap<>();
 
-        postService.add(postDto);
+        postService.add(postAddDto);
 
         String result = "asdf";
 

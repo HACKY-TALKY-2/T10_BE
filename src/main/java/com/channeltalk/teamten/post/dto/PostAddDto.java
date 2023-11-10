@@ -6,11 +6,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
-public class PostDto {
+public class PostAddDto {
 
     // postid만 없음
     // image도 없음
-    private String userId;
+    private Long memberKeyId;
     private String title;
     private String content;
     private Long itemPrice;
@@ -20,5 +20,6 @@ public class PostDto {
 //    private Long participantPeople;
     private Long totalItemCount;
     private String location;
+
     private MultipartFile multipartFile; // 업로드 이미지
 }

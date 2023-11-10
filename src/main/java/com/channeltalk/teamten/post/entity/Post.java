@@ -1,7 +1,7 @@
 package com.channeltalk.teamten.post.entity;
 
 import com.channeltalk.teamten.BaseTimeEntity;
-import com.channeltalk.teamten.post.dto.PostDto;
+import com.channeltalk.teamten.post.dto.PostAddDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,8 +19,8 @@ public class Post extends BaseTimeEntity {
     @Column(name = "postID")
     private Long postId;
 
-    @Column(name = "user_id", nullable = false, length = 40)
-    private String userId;
+    @Column(name = "member_key_id", nullable = false)
+    private Long memberKeyId;
 
     @Column(nullable = false, length = 45)
     private String title;
@@ -32,7 +32,7 @@ public class Post extends BaseTimeEntity {
     private String image;
 
     @Column(name = "itemPrice", nullable = false)
-    private Long itemPrice = 0L;
+    private Long itemPrice;
 
     @Column(name = "tradePlace", nullable = false, length = 45)
     private String tradePlace;
@@ -53,19 +53,19 @@ public class Post extends BaseTimeEntity {
     private String location;
 
 
-    public static Post createPost(PostDto postDto, String imageUrl) {
+    public static Post createPost(PostAddDto postAddDto, String imageUrl) {
 
         return Post.builder()
-                .userId(postDto.getUserId())
-                .title(postDto.getTitle())
-                .content(postDto.getContent())
-                .itemPrice(postDto.getItemPrice())
-                .tradePlace(postDto.getTradePlace())
-                .kakao(postDto.getKakao())
-                .totalPeople(postDto.getTotalPeople())
+                .memberKeyId(postAddDto.getMemberKeyId())
+                .title(postAddDto.getTitle())
+                .content(postAddDto.getContent())
+                .itemPrice(postAddDto.getItemPrice())
+                .tradePlace(postAddDto.getTradePlace())
+                .kakao(postAddDto.getKakao())
+                .totalPeople(postAddDto.getTotalPeople())
                 .participantPeople(0L)
-                .totalItemCount(postDto.getTotalItemCount())
-                .location(postDto.getLocation())
+                .totalItemCount(postAddDto.getTotalItemCount())
+                .location(postAddDto.getLocation())
                 .image(imageUrl)
                 .build();
     }
