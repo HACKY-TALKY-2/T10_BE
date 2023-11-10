@@ -29,8 +29,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    member_key_id = models.IntegerField("멤버번호", primary_key= True, unique= True, auto_created= True)
-    user_id = models.CharField("사용자 계정", max_length= 40, unique=True)
+    user_id = models.CharField("사용자 계정", primary_key= True, max_length= 40, unique=True)
+    member_key_id = models.IntegerField("멤버번호", unique= True, auto_created= True)
     password = models.TextField("비밀번호")
     point = models.IntegerField("포인트", default= 0)
     location = models.CharField("지역", max_length= 100)
