@@ -130,6 +130,8 @@ public class PostController {
         response.put("message", "DaedPostList Success");
         return ResponseEntity.ok(response);
 
+
+
     }
 
     // 응답 메서드
