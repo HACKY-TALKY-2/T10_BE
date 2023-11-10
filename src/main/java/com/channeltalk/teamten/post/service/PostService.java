@@ -17,4 +17,7 @@ public interface PostService {
     // 모든 신고 내역 조회
     List<Post> getAllPost();
 
+    // 공구 마감
+    void end(Long postId) throws IOException;
+
 }

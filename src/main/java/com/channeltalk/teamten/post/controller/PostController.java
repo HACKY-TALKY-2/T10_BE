@@ -98,7 +98,21 @@ public class PostController {
         }
     }
 
+    /**
+     * 공구 마감
+     */
 
+    @PostMapping("/end")
+    public ResponseEntity<Object> endPost(@RequestBody Long postId) throws IOException {
+
+        Map<String, Object> response = new HashMap<>();
+        postService.end(postId);
+
+        response.put("result", true);
+        response.put("message", "end Success");
+        return ResponseEntity.ok(response);
+
+    }
 
     // 응답 메서드
     private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {

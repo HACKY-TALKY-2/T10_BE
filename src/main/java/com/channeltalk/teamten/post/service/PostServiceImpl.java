@@ -81,11 +81,24 @@ public class PostServiceImpl implements PostService {
         return post.getKakao();
     }
 
+    // 모든 게시글 불러오기
     @Override
     public List<Post> getAllPost() {
         List<Post> reports = postRepository.findAll();
 
         return reports;
+    }
+
+    // 공구 마감하기
+    @Override
+    public void end(Long postId) throws IOException {
+
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        Post post = optionalPost.get();
+        post.setDeadline(1L); // 공구마감
+
+        postRepository.save(post);
+
     }
 
 
